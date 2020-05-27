@@ -1,0 +1,25 @@
+ <div id="app">
+        <span v-if="isuser">
+          <label for="username">用户账号</label>
+          <input type="text" id="username" placeholder="用户账号" key="username">
+        </span>
+        <span v-else><label for="emaliname">用户邮箱</label>
+          <input type="text" id="emaliname" placeholder="用户邮箱" key="emaliname"></span>
+        <!--当我们在文本框输入数据后想切换，发现切换后数据仍然在，这是因为虚拟dom的问题，把它也渲染了，
+          加一个key值当 key不同就不会渲染在文本框中已经输入的数据
+          -->
+        <button @click="isuser=!isuser">
+      切换
+    </button> </div>
+    <script src='./vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app', //挂载要管理的元素
+            data: {
+                isuser: true
+            },
+            methods: {
+
+            }
+        })
+    </script>
