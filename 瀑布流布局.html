@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #dedede;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .pubu {
+            width: 80%;
+            margin: 0 auto;
+            /*弹性布局横向*/
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .pubu>.item {
+            flex: 1;
+            /*弹性布局每块的占比*/
+            margin: 12px;
+        }
+        
+        .pubu>.item>img {
+            width: 100%;
+            border: 8px solid white;
+            margin-top: 10px;
+            transform: all 0.3s ease-in-out;
+        }
+        
+        .pubu>.item>img:hover {
+            cursor: pointer;
+            /*变大倍数*/
+            transform: scale(1.1);
+            box-shadow: 0px 3px 2px 1px #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pubu">
+        <div class="item" id='pubu01'><img src="./imgs/1.jpg"><img src="./imgs/79.png"><img src="./imgs/c.jpg"></div>
+        <div class="item" id=pubu02></div>
+        <div class="item" id='pubu03'></div>
+        <div class="item" id='pubu04'></div>
+    </div>
+
+    <script type="text/javascript">
+        //设置屏幕默认高度
+        let wheight = window.screen.height + 100;
+        //图片的名称序号
+        let imgid = 0
+        window.onload = function() {
+
+                imgstring();
+                //监听滚轮事件
+                window.document.addEventListener("scroll", function() {
+                    //已经滚动的高度+窗口高度>滚动的最大高度
+                    if (document.documentElement.scrollTop + window.screen.height > document.documentElement.scrollHeight) {
+                        //再次插入图片屏幕高度要加
+                        wheight += 100
+                        imgstring()
+                    }
+                })
+
+            }
+            //插入图片方法
+        function imgstring() {
+            let inter = setInterval(function() { //如果插入图片高度大于设定值则停止循环
+                if (document.documentElement.scrollHeight > wheight) {
+                    clearInterval(inter)
+                }
+                let m = min();
+                //插入图片
+                //根据图片名称序号
+                imgid++;
+                if (imgid > 5) {
+                    imgid = 0
+                }
+                let img = document.createElement('img')
+                img.setAttribute("src", "./imgs/" + imgid + ".jpg")
+                m.appendChild(img) //放入图片
+            }, 200)
+        }
+        //计算最小列
+        function min() {
+            let pb1 = document.getElementById('pubu01')
+            let pb2 = document.getElementById('pubu02')
+            let pb3 = document.getElementById('pubu03')
+            let pb4 = document.getElementById('pubu04')
+            let pbimg1 = pb1.children;
+            let pbimg2 = pb2.children;
+            let pbimg3 = pb3.children;
+            let pbimg4 = pb4.children;
+            let h1 = jisuan(pbimg1)
+            let h2 = jisuan(pbimg2)
+            let h3 = jisuan(pbimg3)
+            let h4 = jisuan(pbimg4)
+            let minheight = Math.min(h1, h2, h3, h4)
+            if (minheight == h1) {
+                return pb1
+            }
+            if (minheight == h2) {
+                return pb2
+            }
+            if (minheight == h3) {
+                return pb3
+            }
+            if (minheight == h4) {
+                return pb4
+            }
+
+
+        }
+
+        function jisuan(pbimg) {
+            if (pbimg == null || pbimg.length == 0) {
+                return 0;
+            } else {
+                let hs = 0;
+                for (let i = 0; i < pbimg.length; i++) {
+                    var img = pbimg[i]
+                    var h = img.height;
+                    hs += h
+                }
+                return hs;
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
