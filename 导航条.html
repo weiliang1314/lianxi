@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            color: #212121;
+        }
+        
+        .nav-bar {
+            margin-top: 140px;
+            width: 100%;
+            background-color: white;
+            height: 63px;
+            border: solid 1px rgb(224, 224, 224);
+            border-left: 0px;
+            border-right: 0px;
+        }
+        
+        #fixed {
+            margin: 0px;
+            position: fixed;
+            top: -65px;
+            transition: all .3s linear;
+        }
+        
+        #fixed.active {
+            top: 0px;
+        }
+        
+        .nav-bar .cont {
+            width: 1200px;
+            height: 60px;
+            background-color: white;
+            margin: 0px auto;
+        }
+        
+        .nav-bar .cont .min {
+            display: inline-block;
+            height: 60px;
+            line-height: 60px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        
+        .nav-bar .cont .right {
+            display: inline-block;
+            float: right;
+            height: 30px;
+            margin-top: 17px;
+        }
+        
+        .nav-bar .cont .right .s {
+            color: #e0e0e0;
+            font-size: 14px;
+            line-height: 21px;
+            margin: 0px 3.5px;
+        }
+        
+        .nav-bar .cont .right a:not(.buy) {
+            color: #616161;
+            font-size: 14px;
+            line-height: 21px;
+            text-decoration: none;
+        }
+        
+        .nav-bar .cont .right .buy {
+            width: 118px;
+            height: 28px;
+            display: inline-block;
+            border: solid 1px rgb(255, 103, 0);
+            background-color: rgb(255, 103, 0);
+            color: white;
+            text-align: center;
+            line-height: 28px;
+            font-size: 12px;
+            text-decoration: none;
+            margin-left: 5px;
+            transition: all .3s;
+        }
+        
+        .nav-bar .cont .right .buy:hover {
+            background-color: #f25807;
+            color: white;
+        }
+        
+        .nav-bar .cont .right a:hover {
+            color: #ff6700;
+        }
+        
+        .nav-bar .cont .right .cur {
+            color: #ff6700 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar" id="fixed">
+        <div class="cont">
+            <h2 class="min">Redmi</h2>
+            <div class="right">
+                <a href="" class="cur">概述</a>
+                <span class="s">|</span>
+                <a href="">参数</a>
+                <span class="s">|</span>
+                <a href="">图集</a>
+                <span class="s">|</span>
+                <a href="">通道</a>
+                <span class="s">|</span>
+                <a href="">评价</a>
+                <a href="" class="buy">立即购买</a>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar" id="static">
+        <div class="cont">
+            <h2 class="min">Redmi2</h2>
+            <div class="right">
+                <a href="" class="cur">概述</a>
+                <span class="s">|</span>
+                <a href="">参数</a>
+                <span class="s">|</span>
+                <a href="">图集</a>
+                <span class="s">|</span>
+                <a href="">通道</a>
+                <span class="s">|</span>
+                <a href="">评价</a>
+                <a href="" class="buy">立即购买</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script type="text/javascript">
+        var fixedNavbar = document.getElementById("fixed")
+        var staticNavbar = document.getElementById("static")
+        var y = staticNavbar.offsetHeight + staticNavbar.offsetTop
+        var positionY = 0
+        var timer = window.setInterval(function() {
+                //每一次定时器修改y的位置,到达指定位置后停止
+                positionY += 1
+                if (positionY <= staticNavbar.offsetTop) {
+                    window.scrollTo(0, positionY)
+                } else {
+                    clearInterval(timer)
+                }
+            }, 5)
+            //向上滑动隐藏的导航出来
+        var show = function() {
+            fixedNavbar.classList.add('active')
+        }
+        var hide = function() {
+            fixedNavbar.classList.remove('active')
+        }
+        window.addEventListener('scroll', function() {
+            console.log(window.scrollY)
+            if (
+                window.scrollY > y
+            ) {
+                show()
+            } else {
+                hide()
+            }
+        })
+    </script>
+</body>
+
+</html>
