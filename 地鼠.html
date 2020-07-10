@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        
+        body {
+            border: 1px solid #aaa;
+            margin: 0;
+            background: url(imgs/OIP.jfif) no-repeat center/cover;
+            /*不同分辨率图片平铺在界面*/
+        }
+        
+        .box {
+            text-align: center;
+        }
+        
+        table {
+            margin: 20px auto;
+            /*图片随鼠标移动*/
+            cursor: url(imgs/锤子.png), auto
+        }
+        
+        td {
+            width: 80px;
+            height: 80px;
+            border: 3px solid goldenrod;
+            border-radius: 30px;
+            background-color: #777777;
+            opacity: 0.7;
+        }
+        
+        .cov {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .cov>#easy {
+            text-align: center;
+            width: 180px;
+            height: 50px;
+            margin-top: 100px;
+            margin-left: 41%;
+            border-radius: 20px;
+        }
+        
+        .cov>#easys {
+            text-align: center;
+            width: 180px;
+            height: 50px;
+            margin-top: 50px;
+            margin-left: 41%;
+            border-radius: 20px;
+        }
+        
+        .id {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!--初始界面-->
+    <div class="cov">
+        <input type="button" value='简单模式' id='easy'>
+        <input type="button" value='地狱模式' id='easys'>
+    </div>
+    <div class='id'>
+        <div class="box">
+            <label>分数</label><input type="text" id="txt" value="0">
+            <label>计时</label><input type="text" id="txts" value="30">
+        </div>
+        <table id='tds'>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let id = document.querySelector('.id')
+        let cov = document.querySelector('.cov')
+        let td = document.getElementsByTagName('td')
+        let time = document.getElementById('txts')
+        var txt = document.getElementById('txt')
+            //初始分数
+        let scor = 0;
+        let times = time.value
+        let ta = document.getElementById('tds')
+        for (let i = 0; i < td.length; i++) {
+            //鼠标按下事件
+            td[i].onmousedown = function() {
+                    ta.style.cursor = 'url(imgs/79.png), auto'
+                }
+                //鼠标松开
+            td[i].onmouseup = function() {
+                ta.style.cursor = 'url(imgs/锤子.png), auto';
+                //判断咋下的锤子下有图片吗,td中子元素
+                if (this.children.length != 0) {
+                    //加分
+                    scor++;
+                    txt.value = scor;
+                    //砸中后换图
+                    this.children[0].src = "imgs/c21.png"
+
+                } else {
+                    scor--;
+                    txt.value = scor
+                }
+            }
+        }
+        //点击事件
+        document.getElementById('easy').onclick = function() {
+            star(2000, 1000)
+        }
+        document.getElementById('easys').onclick = function() {
+            star(1000, 500)
+        }
+
+        function star(time1, time2) {
+            cov.style.display = 'none '
+            id.style.display = "block"
+
+            //setInterval定时器出现无数次循环，setTimeout只有一次
+            let mouse = setInterval(function() {
+                    //生成随机下标
+                    let idx = parseInt(Math.random() * td.length)
+                        //地鼠随机出现，限时消失
+                    td[idx].innerHTML = '<img src="./imgs/打地鼠.png">';
+                    setTimeout(function() {
+                        td[idx].innerHTML = ''
+                    }, time2);
+                    if (times == 0) {
+                        clearInterval(mouse)
+                        alert('游戏结束！')
+                    }
+                }, time1)
+                //倒计时
+            let timeid = setInterval(function() {
+                times--;
+                time.value = times
+                if (times == 0)
+                    clearInterval(timeid)
+
+            }, 1000)
+        }
+    </script>
+</body>
+
+</html>
