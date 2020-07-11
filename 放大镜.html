@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            width: 350px;
+            height: 350px;
+            border: 1px solid #000000;
+            position: relative;
+        }
+        
+        #big {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000000;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            display: none;
+        }
+        
+        #mask {
+            width: 150px;
+            height: 150px;
+            background-color: aquamarine;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*透明度*/
+            opacity: 0.3;
+            display: none;
+            /*鼠标形状*/
+            cursor: move;
+        }
+        
+        #small {
+            position: relative;
+        }
+        
+        #imgs {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        #small img {
+            width: 250px;
+            height: 250px;
+            margin: 30px 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="small">
+            <img src="./imgs/1.jpg">
+            <div id="mask"></div>
+        </div>
+        <div id="big">
+            <img src="./imgs/5.jpg" id="imgs"> </div>
+    </div>
+    <script type="text/javascript">
+        function $(id) {
+            return document.getElementById(id)
+        }
+        let box = $("box")
+        let small = $("small")
+        let big = $("big")
+        let mask = $("mask")
+        let imgs = $("imgs")
+            //鼠标移到小图显示
+        small.onmouseover = function() {
+                mask.style.display = "block"
+                big.style.display = "block"
+
+            }
+            //鼠标移除
+        small.onmouseout = function() {
+                mask.style.display = "none"
+                big.style.display = "none"
+
+            }
+            //鼠标移到带动遮罩层
+        small.onmousemove = function(e) {
+            //兼容
+            let en = e || window.event;
+            //横坐标移动
+            let x = en.pageX - box.offsetLeft - mask.offsetWidth / 2
+                //纵坐标移动
+            let y = en.pageY - box.offsetTop - mask.offsetHeight / 2
+                //临界值判断移动范围不能超过盒子
+            let maxX = box.clientWidth - mask.clientWidth
+            let maxY = box.clientHeight - mask.clientHeight
+
+            x = x < 0 ? 0 : (x > maxX ? maxX : x)
+            y = y < 0 ? 0 : (y > maxY ? maxY : y)
+            mask.style.left = x + "px"
+            mask.style.top = y + "px"
+                //显示大图
+            let bigimgleft = -x * imgs.offsetWidth / small.offsetWidth
+            let bigimgtop = -y * imgs.offsetHeight / small.offsetHeight
+            imgs.style.left = bigimgleft + "px"
+            imgs.style.top = bigimgtop + "px"
+
+
+        }
+    </script>
+</body>
+
+</html>
