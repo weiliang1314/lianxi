@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .center {
+            margin: 20px auto;
+            width: 230px;
+            border: 1px solid silver;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        
+        .menu h5 {
+            color: #fff;
+            height: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            line-height: 20px;
+            text-align: center;
+            background-color: #3889D4;
+            border-radius: 20px;
+        }
+        
+        .menu h5:hover {
+            cursor: pointer;
+            background-color: #3D8332;
+        }
+        
+        .menu li {
+            margin-bottom: 5px;
+        }
+        
+        .menu .list {
+            background-color: #333;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .menu .list li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .menu .list li {
+            text-align: center;
+            font-size: 12px;
+            font-weight: normal;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <ul class="menu">
+            <li class="">
+                <h5 id='a'>西安景点</h5>
+                <ul class="list">
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <h5 id='a'>北京景点</h5>
+                <ul class="list">
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <h5 id='a'>安徽景点</h5>
+                <ul class="list">
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <h5 id='a'>宁夏景点</h5>
+                <ul class="list">
+                    <li><a href="">镇北堡</a></li>
+                    <li><a href="">西夏皇陵</a></li>
+                    <li><a href="">兵马俑</a></li>
+                    <li><a href="">兵马俑</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        //let menu = document.getElementsByClassName('menu')
+        let list = document.getElementsByClassName('list')
+        let h = document.getElementsByTagName('h5')
+        setInterval(hua, 1000)
+
+        function hua() {
+            for (let i in h) {
+                for (let j in list) {
+                    if (i == j) {
+                        h[i].onclick = function() {
+                            //获取下一个元素
+                            // let next = this.nextElementSibling;
+                            list[j].style.display = "block"
+                            if (list[j].style.display = "block") {
+                                h[i].onclick = function() {
+                                    list[j].style.display = "none"
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
